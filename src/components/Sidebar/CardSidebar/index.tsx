@@ -28,7 +28,7 @@ export const CardSidebar = ({ item }: CardSidebarProps) => {
       dispatch(updateAmount({ id: item.id, amount: newAmount }))
       setQuantity(newAmount)
     } else {
-      return
+      setQuantity(1)
     }
   }
 
