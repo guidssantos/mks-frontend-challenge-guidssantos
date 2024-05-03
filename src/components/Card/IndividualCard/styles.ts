@@ -9,6 +9,8 @@ export const Container = styled.div`
     width: 217.56px;
     gap: 1rem;
     border-radius: ${theme.border.radius.xsmall};
+    justify-content: space-between;
+    height: 100%;
   `}
 `
 
@@ -35,7 +37,7 @@ export const Title = styled.h1`
 
 export const PriceContainer = styled.div`
   ${({ theme }) => css`
-    height: 100%;
+    height: fit-content;
     background-color: ${theme.colors.secondary};
     padding: 0.3rem 0.6rem;
     border-radius: ${theme.border.radius.xsmall};
@@ -56,10 +58,10 @@ export const Description = styled.span`
 
 export const Button = styled.button`
   ${({ theme }) => css`
-  display: flex;
-  align-items: center;
-  gap: 1.6rem;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    justify-content: center;
     background-color: ${theme.colors.primary};
     width: 100%;
     padding: 1rem;
@@ -67,5 +69,17 @@ export const Button = styled.button`
     font-weight: 600;
     border-radius: 0 0 ${theme.border.radius.xsmall}
       ${theme.border.radius.xsmall};
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #093b88;
+    }
+
+    &:active{
+      font-size: 1.2rem;
+      img{
+        width: 13px;
+        height: 100%;
+      }
+    }
   `}
 `
