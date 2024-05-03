@@ -1,11 +1,15 @@
 'use client';
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "styled-components";
 import theme from "@/styles/theme";
 import GlobalStyles from "@/styles/global";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import { store } from "@/store";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 
+const queryClient = new QueryClient()
 
 export default function RootLayout({
   children,
@@ -14,13 +18,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="br">
+      <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
+      </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          {children}
-        </ThemeProvider>
+        <Provider store={store}>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider theme={theme}>
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
+              <GlobalStyles />
+              {children}
+            </ThemeProvider>
+          </QueryClientProvider>
+        </Provider>
       </body>
-
     </html>
   )
 }
