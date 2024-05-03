@@ -8,6 +8,14 @@ export const Container = styled.div`
     align-items: center;
     gap: 1.4rem;
     padding: ${theme.spacings.xxsmall} ${theme.spacings.small};
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+    &:hover {
+      background-color: #eae4e4;
+    }
+    &:active{
+      transform: scale(0.95);
+    }
   `}
 `
 
