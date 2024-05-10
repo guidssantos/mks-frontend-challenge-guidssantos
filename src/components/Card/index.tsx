@@ -1,21 +1,26 @@
-import useProducts from '@/hooks/useProducts'
 import { IndividualCard } from './IndividualCard'
 import * as Styled from './styles'
-import { motion, useCycle } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ProductProps } from '@/types/products'
+import useProducts from '@/hooks/useProducts'
 
 export const Card = () => {
-  const { data, isLoading, isError } = useProducts({
+  const { data, isLoading, isError, refetch } = useProducts({
     page: 1,
     rows: 8,
     sortBy: 'name',
     orderBy: 'DESC'
   })
 
-  const [opacityCycle, cycleOpacity] = useCycle(1, 0.5)
-
-  if(isError){
-    console.log('error', isError)
+  if (isError) {
+    return (
+      <div>
+        <p>
+          Erro ao carregar os produtos. Por favor, tente novamente mais tarde.
+        </p>
+        <button onClick={() => refetch()}>Tentar Novamente</button>
+      </div>
+    )
   }
 
   if (isLoading) {
@@ -24,10 +29,9 @@ export const Card = () => {
         {[...Array(8)].map((_, index) => (
           <motion.div
             key={index}
-            animate={{ opacity: opacityCycle }}
+            animate={{ opacity: 0.5 }}
             transition={{ duration: 1.5, repeat: Infinity }}
             style={{ marginBottom: '20px', width: '217.56px', height: '316px' }}
-            onAnimationComplete={() => cycleOpacity()}
           >
             <div
               style={{
@@ -52,12 +56,10 @@ export const Card = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <IndividualCard
-            key={product.id}
-            product={product}
-          />
+          <IndividualCard key={product.id} product={product} />
         </motion.div>
       ))}
     </Styled.Container>
   )
 }
+

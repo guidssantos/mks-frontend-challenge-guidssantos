@@ -11,7 +11,9 @@ const fetchProducts = async (filters: ProductFilters) => {
 }
 
 const useProducts = (filters: ProductFilters) => {
-  return useQuery(['products', filters], () => fetchProducts(filters))
+  return useQuery(['products', filters], () => fetchProducts(filters), {
+    staleTime: 60000
+  })
 }
 
 export default useProducts
