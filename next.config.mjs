@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['mks-sistemas.nyc3.digitaloceanspaces.com']
+    domains: ['i.postimg.cc']
   }
 }
 

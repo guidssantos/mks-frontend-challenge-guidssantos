@@ -49,7 +49,7 @@ export const Card = () => {
 
   return (
     <Styled.Container>
-      {data.products.map((product: ProductProps) => (
+      {data.map((product: ProductProps) => (
         <motion.div
           key={product.id}
           initial={{ opacity: 0, y: 50 }}

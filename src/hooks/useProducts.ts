@@ -4,8 +4,8 @@ import { ProductFilters } from '@/types/products'
 
 const fetchProducts = async (filters: ProductFilters) => {
   const { data } = await axios.get(
-    'https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products',
-    {params: filters}
+    'http://localhost:3000/api/products',
+    // {params: filters}
   )
   return data
 }
