@@ -1,5 +1,5 @@
 'use client'
-import * as Styled from './styles'
+import * as S from './styles'
 import ShoppingCartSvg from './images/shoppingcart.svg'
 import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,11 +25,11 @@ const handleShoppingCartClick = () => {
 
 
   return (
-    <Styled.Container onClick={handleShoppingCartClick}>
+    <S.Container onClick={handleShoppingCartClick}>
       <Image src={ShoppingCartSvg} alt="Shopping Cart" />
-      <Styled.Quantity>
+      <S.Quantity>
         {totalQuantity}
-      </Styled.Quantity>
-    </Styled.Container>
+      </S.Quantity>
+    </S.Container>
   )
 }

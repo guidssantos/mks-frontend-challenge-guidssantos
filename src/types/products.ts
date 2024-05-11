@@ -12,7 +12,9 @@ export interface ProductProps{
 
 export interface ProductFilters{
   page: number,
-  rows: number,
-  sortBy: string,
-  orderBy: string
+  categories: [],
+    orderBy: string,
+  limit: number,
+  startDate: 0,
+  endDate: 0,
 }

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSidebar } from './CardSidebar'
-import * as Styled from './styles'
+import * as S from './styles'
 import { visibleCard, clearCart } from '@/store/modules/cart/actions'
 import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
@@ -41,28 +41,28 @@ export const Sidebar = ({ visible }: { visible?: boolean }) => {
         visibility: visible ? 'visible' : 'hidden'
       }}
     >
-      <Styled.Container>
-        <Styled.ItemContainer>
-          <Styled.Header>
-            <Styled.Title>Carrinho de compras</Styled.Title>
-            <Styled.OnClose onClick={handleShoppingCartClick}>X</Styled.OnClose>
-          </Styled.Header>
-          <Styled.ContentContainer>
-            <Styled.CardContainer>
+      <S.Container>
+        <S.ItemContainer>
+          <S.Header>
+            <S.Title>Carrinho de compras</S.Title>
+            <S.OnClose onClick={handleShoppingCartClick}>X</S.OnClose>
+          </S.Header>
+          <S.ContentContainer>
+            <S.CardContainer>
               {cartItems.map((item: ProductProps) => (
                 <CardSidebar key={item.id} item={item} />
               ))}
-            </Styled.CardContainer>
-            <Styled.TotalContainer>
-              <Styled.TotalTitle>Total:</Styled.TotalTitle>
-              <Styled.TotalPrice>R$: {totalPrice.toFixed(2)}</Styled.TotalPrice>
-            </Styled.TotalContainer>
-          </Styled.ContentContainer>
-        </Styled.ItemContainer>
-        <Styled.Button onClick={handleFinalizarCompraClick}>
+            </S.CardContainer>
+            <S.TotalContainer>
+              <S.TotalTitle>Total:</S.TotalTitle>
+              <S.TotalPrice>R$: {totalPrice.toFixed(2)}</S.TotalPrice>
+            </S.TotalContainer>
+          </S.ContentContainer>
+        </S.ItemContainer>
+        <S.Button onClick={handleFinalizarCompraClick}>
           Finalizar Compra
-        </Styled.Button>{' '}
-      </Styled.Container>
+        </S.Button>{' '}
+      </S.Container>
     </motion.div>
   )
 }

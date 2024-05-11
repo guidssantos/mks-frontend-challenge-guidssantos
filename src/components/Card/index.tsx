@@ -1,17 +1,13 @@
 import { IndividualCard } from './IndividualCard'
-import * as Styled from './styles'
+import * as S from './styles'
 import { motion } from 'framer-motion'
-import { ProductProps } from '@/types/products'
+import { ProductFilters, ProductProps } from '@/types/products'
 import useProducts from '@/hooks/useProducts'
 
-export const Card = () => {
+export const Card = ({filters}: any) => {
   const { data, isLoading, isError, refetch } = useProducts({
-    page: 1,
-    rows: 8,
-    sortBy: 'name',
-    orderBy: 'DESC'
+    ...filters
   })
-
   if (isError) {
     return (
       <div>
@@ -25,7 +21,7 @@ export const Card = () => {
 
   if (isLoading) {
     return (
-      <Styled.Container>
+      <S.Container>
         {[...Array(8)].map((_, index) => (
           <motion.div
             key={index}
@@ -43,12 +39,13 @@ export const Card = () => {
             ></div>
           </motion.div>
         ))}
-      </Styled.Container>
+      </S.Container>
     )
   }
 
   return (
-    <Styled.Container>
+    <S.Container>
+      
       {data.map((product: ProductProps) => (
         <motion.div
           key={product.id}
@@ -59,7 +56,7 @@ export const Card = () => {
           <IndividualCard key={product.id} product={product} />
         </motion.div>
       ))}
-    </Styled.Container>
+    </S.Container>
   )
 }
 

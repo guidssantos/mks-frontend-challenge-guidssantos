@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import * as Styled from './styles'
+import * as S from './styles'
 import AppleWatch from './images/apple-watch.svg'
 import ShoppingBag from './images/shopping-bag.svg'
 import { useDispatch } from 'react-redux'
@@ -21,27 +21,27 @@ export const IndividualCard = ({ product }: IndividualCardProps) => {
     dispatch(addToCart(product))
   }
   return (
-    <Styled.Container>
-      <Styled.CardDetailsContainer>
+    <S.Container>
+      <S.CardDetailsContainer>
         <Image
           src={product?.photo}
           alt={product?.name}
           width={150}
           height={150}
         />
-        <Styled.TitleContainer>
-          <Styled.Title>{product?.name}</Styled.Title>
-          <Styled.PriceContainer>
-            <Styled.Price>R${product?.price}</Styled.Price>
-          </Styled.PriceContainer>
-        </Styled.TitleContainer>
-        <Styled.Description>{product?.description}</Styled.Description>
-      </Styled.CardDetailsContainer>
+        <S.TitleContainer>
+          <S.Title>{product?.name}</S.Title>
+          <S.PriceContainer>
+            <S.Price>R${product?.price}</S.Price>
+          </S.PriceContainer>
+        </S.TitleContainer>
+        <S.Description>{product?.description}</S.Description>
+      </S.CardDetailsContainer>
 
-      <Styled.Button onClick={handleAddToCart}>
+      <S.Button onClick={handleAddToCart}>
         <Image src={ShoppingBag} alt="Shopping Bag" />
         COMPRAR
-      </Styled.Button>
-    </Styled.Container>
+      </S.Button>
+    </S.Container>
   )
 }

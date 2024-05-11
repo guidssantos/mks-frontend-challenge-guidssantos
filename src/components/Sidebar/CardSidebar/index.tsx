@@ -1,7 +1,7 @@
 import  React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useDispatch } from 'react-redux'
-import * as Styled from './styles'
+import * as S from './styles'
 import { toast } from 'react-toastify'
 import { removeFromCart, updateAmount } from '@/store/modules/cart/actions'
 import { ProductProps } from '@/types/products'
@@ -35,33 +35,33 @@ export const CardSidebar = ({ item }: CardSidebarProps) => {
   const totalPrice = item.price * quantity
 
   return (
-    <Styled.Container>
-      <Styled.OnClose onClick={handleRemoveFromCart}>X</Styled.OnClose>
+    <S.Container>
+      <S.OnClose onClick={handleRemoveFromCart}>X</S.OnClose>
       <Image src={item.photo} alt={item.name} width={46} height={46} />
-      <Styled.Title>{item.name}</Styled.Title>
-      <Styled.QuantityContainer>
-        <Styled.QuantityTitle>Qtd:</Styled.QuantityTitle>
-        <Styled.Quantity>
-          <Styled.QuantityControl
+      <S.Title>{item.name}</S.Title>
+      <S.QuantityContainer>
+        <S.QuantityTitle>Qtd:</S.QuantityTitle>
+        <S.Quantity>
+          <S.QuantityControl
             style={{
               borderRight: '0.2px solid #bfbfbf'
             }}
             onClick={() => handleUpdateAmount(quantity - 1)}
           >
             -
-          </Styled.QuantityControl>
+          </S.QuantityControl>
           <span>{quantity}</span>
-          <Styled.QuantityControl
+          <S.QuantityControl
             style={{
               borderLeft: '0.2px solid #bfbfbf'
             }}
             onClick={() => handleUpdateAmount(quantity + 1)}
           >
             +
-          </Styled.QuantityControl>
-        </Styled.Quantity>
-      </Styled.QuantityContainer>
-      <Styled.Price>R$: {totalPrice.toFixed(2)}</Styled.Price>{' '}
-    </Styled.Container>
+          </S.QuantityControl>
+        </S.Quantity>
+      </S.QuantityContainer>
+      <S.Price>R$: {totalPrice.toFixed(2)}</S.Price>{' '}
+    </S.Container>
   )
 }

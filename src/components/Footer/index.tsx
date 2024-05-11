@@ -1,6 +1,6 @@
 'use client'
-import * as Styled from './styles'
+import * as S from './styles'
 
 export const Footer = () => {
-  return <Styled.Container>MKS Sistemas © Todos os direitos reservados</Styled.Container>
+  return <S.Container>MKS Sistemas © Todos os direitos reservados</S.Container>
 }

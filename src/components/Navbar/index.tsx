@@ -1,20 +1,20 @@
 'use client'
 import { ShoppingCart } from '../ShoppingCart'
-import * as Styled from './styles'
+import * as S from './styles'
 
 export const Navbar = () => {
   return (
-    <Styled.Container>
-      <Styled.Logo>
-        <Styled.LogoTitle>
+    <S.Container>
+      <S.Logo>
+        <S.LogoTitle>
           MKS
-        </Styled.LogoTitle>
-        <Styled.LogoSubTitle>
+        </S.LogoTitle>
+        <S.LogoSubTitle>
           Sistemas
-        </Styled.LogoSubTitle>
-      </Styled.Logo>
+        </S.LogoSubTitle>
+      </S.Logo>
 
       <ShoppingCart/>
-    </Styled.Container>
+    </S.Container>
   )
 }

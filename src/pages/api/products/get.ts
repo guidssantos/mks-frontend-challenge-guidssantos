@@ -3,12 +3,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ObjectId } from 'mongodb';
 
 export default async function handleGet(req: NextApiRequest, res: NextApiResponse) {
-    const { page = 1, limit = 10, sortby = 'createdAt', orderby = -1, name, id, category } = req.query;
+    const { page = 1, limit = 10, sortBy = 'createdAt', orderBy = -1, name, id, category } = req.query;
 
     const options = {
         skip: (Number(page) - 1) * Number(limit),
         limit: Number(limit),
-        sort: { [sortby as string]: orderby as any } 
+        sort: { [sortBy as string]: orderBy as any } 
     };
 
     const query: any = {};
