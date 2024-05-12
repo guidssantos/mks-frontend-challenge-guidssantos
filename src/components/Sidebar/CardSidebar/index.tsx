@@ -5,7 +5,7 @@ import * as S from './styles'
 import { toast } from 'react-toastify'
 import { removeFromCart, updateAmount } from '@/store/modules/cart/actions'
 import { ProductProps } from '@/types/products'
-import OnClose from '../images/OnClose.svg'
+import { Icon } from '@iconify-icon/react'
 
 interface CardSidebarProps {
   item: ProductProps
@@ -38,7 +38,12 @@ export const CardSidebar = ({ item }: CardSidebarProps) => {
   return (
     <S.Container>
       <S.OnClose onClick={handleRemoveFromCart}>
-        <OnClose />
+        <Icon
+          data-testid="X"
+          width={20}
+          height={20}
+          icon="solar:close-circle-outline"
+        />
       </S.OnClose>
       <Image
         src={item.photo}

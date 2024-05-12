@@ -28,7 +28,7 @@ describe('IndividualCard Component', () => {
 
   test('should render component with product details', () => {
     const product = {
-      id: 1,
+      _id: "1",
       name: 'Test Product',
       description: 'Test Description',
       photo:
@@ -48,14 +48,13 @@ describe('IndividualCard Component', () => {
     )
 
     expect(getByText('Test Product')).toBeInTheDocument()
-    expect(getByText('Test Description')).toBeInTheDocument()
-    expect(getByText('R$99.99')).toBeInTheDocument()
+    expect(getByText('R$ 99,99')).toBeInTheDocument()
     expect(getByAltText('Test Product')).toBeInTheDocument()
   })
 
   test('should call addToCart and toast when button is clicked', () => {
     const product = {
-      id: 1,
+      _id: "1",
       name: 'Test Product',
       brand: 'Test',
       description: 'Test Description',
@@ -66,7 +65,7 @@ describe('IndividualCard Component', () => {
       updatedAt: '2023-10-30T16:25:01.093Z'
     }
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <IndividualCard product={product} />
@@ -74,7 +73,7 @@ describe('IndividualCard Component', () => {
       </ThemeProvider>
     )
 
-    fireEvent.click(getByText('COMPRAR'))
+    fireEvent.click(getByTestId('buy-button'))
 
     expect(toast.success).toHaveBeenCalledWith(
       'Produto adicionado ao carrinho!'

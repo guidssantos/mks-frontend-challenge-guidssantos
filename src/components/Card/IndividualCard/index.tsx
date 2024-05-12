@@ -1,14 +1,12 @@
 'use client'
 import Image from 'next/image'
 import * as S from './styles'
-import AppleWatch from './images/apple-watch.svg'
-import ShoppingBag from './images/shopping-bag.svg'
-import HeartIcon from './images/heart.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, favorite } from '@/store/modules/cart/actions'
 import { toast } from 'react-toastify'
 import { ProductProps } from '@/types/products'
 import { formatCurrency } from '@/utils/formatCurrency'
+import { Icon } from '@iconify-icon/react'
 
 
 interface IndividualCardProps {
@@ -19,7 +17,7 @@ export const IndividualCard = ({ product }: IndividualCardProps) => {
   const dispatch = useDispatch()
   const favorites = useSelector((state: any) => state.cart.favorites)
 
-  const isProductInFavorites = favorites.some(
+  const isProductInFavorites = favorites?.some(
     (favorite: any) => favorite._id === product._id
   )
 
@@ -39,7 +37,7 @@ export const IndividualCard = ({ product }: IndividualCardProps) => {
         <S.Header>
           <S.HeaderBestPrice>MELHOR PREÇO</S.HeaderBestPrice>
           <S.Favorite onClick={handleFavorite} selected={isProductInFavorites}>
-            <HeartIcon />
+            <Icon width={14} height={14} id="icon" icon="solar:heart-linear" />
           </S.Favorite>
         </S.Header>
         <Image
@@ -60,9 +58,9 @@ export const IndividualCard = ({ product }: IndividualCardProps) => {
           <S.PriceTitle>A prazo</S.PriceTitle>
           <S.SubPrice>{formatCurrency(product?.price)}</S.SubPrice>
         </S.PriceContainer>
-        <S.Button onClick={handleAddToCart}>
+        <S.Button data-testid="buy-button" onClick={handleAddToCart}>
           Comprar
-          <ShoppingBag />
+          <Icon width={20} height={20} icon="solar:cart-large-2-outline" />
         </S.Button>
       </S.CardDetailsContainer>
     </S.Container>

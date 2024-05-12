@@ -1,12 +1,11 @@
 'use client'
 import * as S from './styles'
-import  ShoppingCartSvg  from './images/shoppingcart.svg';
 
-import Image from 'next/image'
 import { useDispatch, useSelector } from 'react-redux'
 import { visibleCard } from '@/store/modules/cart/actions'
 import { useEffect, useState } from 'react'
 import { Sidebar } from '../Sidebar';
+import { Icon } from '@iconify-icon/react'
 
 export const ShoppingCart = () => {
 const dispatch = useDispatch()
@@ -29,8 +28,8 @@ const handleShoppingCartClick = () => {
 
   return (
     <>
-      <S.Container onClick={handleShoppingCartClick}>
-        <ShoppingCartSvg />
+      <S.Container data-testId="shopping-cart" onClick={handleShoppingCartClick}>
+        <Icon id='icon' width={20} height={20} icon="solar:cart-large-2-outline" alt='Carrinho' />
         <S.Quantity>{totalQuantity}</S.Quantity>
       </S.Container>
       <Sidebar visible={visible} />

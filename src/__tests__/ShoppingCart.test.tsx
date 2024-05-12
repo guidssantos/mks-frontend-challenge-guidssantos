@@ -14,13 +14,13 @@ describe('ShoppingCart Component', () => {
     const store = mockStore({
       cart: {
         items: [
-          { id: 1, amount: 2 },
-          { id: 2, amount: 3 }
+          { _id: "1", amount: 2 },
+          { _id: "2", amount: 3 }
         ]
       }
     })
 
-    const { getByAltText, getByText } = render(
+    const { getByTestId, getByText } = render(
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <ShoppingCart />
@@ -28,7 +28,7 @@ describe('ShoppingCart Component', () => {
       </ThemeProvider>
     )
 
-    expect(getByAltText('Shopping Cart')).toBeInTheDocument()
+    expect(getByTestId('shopping-cart')).toBeInTheDocument()
     expect(getByText('5')).toBeInTheDocument()
   })
 

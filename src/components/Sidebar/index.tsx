@@ -6,9 +6,8 @@ import { motion } from 'framer-motion'
 import { toast } from 'react-toastify'
 import { ProductProps } from '@/types/products'
 import { useEffect, useState } from 'react'
-import OnClose from './images/OnClose.svg'
 import { FormInput } from '../FormInput'
-import Coupon from './images/Coupon.svg'
+import { Icon } from '@iconify-icon/react'
 
 export const Sidebar = ({ visible }: { visible?: boolean }) => {
   const dispatch = useDispatch()
@@ -42,13 +41,13 @@ export const Sidebar = ({ visible }: { visible?: boolean }) => {
        0
      )
 
-     if (state.coupon.isValid) {
+     if (state.coupon?.isValid) {
       toast.success("Cupom aplicado!")
       calculatedPrice = calculatedPrice * (1 - state.coupon.discount)
      }
 
      setTotalPrice(calculatedPrice)
-   }, [cartItems, state.coupon.isValid])
+   }, [cartItems, state.coupon])
 
   return (
     <S.Container
@@ -59,8 +58,8 @@ export const Sidebar = ({ visible }: { visible?: boolean }) => {
       <S.ItemContainer>
         <S.Header>
           <S.Title>Carrinho</S.Title>
-          <S.OnClose onClick={handleShoppingCartClick}>
-            <OnClose />
+          <S.OnClose data-testId="close" onClick={handleShoppingCartClick}>
+            <Icon width={28} height={28} icon="solar:close-circle-outline" alt='Fechar' />
           </S.OnClose>
         </S.Header>
         {cartItems.length > 0 ? (
@@ -75,7 +74,7 @@ export const Sidebar = ({ visible }: { visible?: boolean }) => {
                 id="coupon"
                 placeholder="Insira o cupom de desconto"
                 type="text"
-                Icon={Coupon}
+                Icon={() => <Icon id='icon' icon="solar:ticket-outline" alt='Cupom' />}
                 onChange={(e) => {
                   couponValidate(e.target.value)
                 }}

@@ -3,8 +3,8 @@ import { createAction } from '@reduxjs/toolkit'
 export interface AddCartPayload {
   _id: string
   name: string
-  brand: string
-  description: string
+  brand?: string
+  description?: string
   photo: string
   price: number
   createdAt: string

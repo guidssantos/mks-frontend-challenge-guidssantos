@@ -154,8 +154,8 @@ export const Favorite = styled.div<any>`
     background: #a6bcff;
     padding: 0.6rem;
     cursor: pointer;
-    path {
-      fill: ${selected ? '#3D3DC9' : '#fff'};
+    #icon  {
+      color: ${selected ? '#3D3DC9' : '#fff'};
     }
   `}
 `

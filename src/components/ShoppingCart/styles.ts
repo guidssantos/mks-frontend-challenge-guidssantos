@@ -10,9 +10,8 @@ export const Container = styled.div`
     position: relative;
     cursor: pointer;
     transition: all ease-in-out 300ms;
-    path {
-      fill: #4d4dff;
-
+    #icon {
+      color: #4d4dff;
     }
     &:hover {
       background-color: #eae4e4;

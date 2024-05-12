@@ -101,7 +101,7 @@ export const ContentContainer = styled.div`
     border: 1px solid #f0f0f0;
 
     input::placeholder,
-    input, g {
+    input, #icon {
       color: #4d4dff;
     }
 

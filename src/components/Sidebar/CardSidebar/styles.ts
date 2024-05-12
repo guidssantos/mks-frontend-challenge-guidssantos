@@ -17,10 +17,7 @@ export const OnClose = styled.div`
   right: 0;
   top: 0.2rem;
   color: #4d4dff;
-  svg {
-    height: 20px;
-    width: 20px;
-  }
+
   cursor: pointer;
 `
 

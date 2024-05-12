@@ -14,8 +14,8 @@ describe('Sidebar Component', () => {
     const store = mockStore({
       cart: {
         items: [
-          { id: 1, name: 'Item 1', price: 10.99, amount: 2 },
-          { id: 2, name: 'Item 2', price: 5.99, amount: 3 }
+          { _id: "1", name: 'Item 1', price: 10.99, amount: 2 },
+          { _id: "2", name: 'Item 2', price: 5.99, amount: 3 }
         ]
       }
     })
@@ -41,7 +41,7 @@ describe('Sidebar Component', () => {
       }
     })
 
-    const { getByText } = render(
+    const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <Sidebar visible={true} />
@@ -49,7 +49,7 @@ describe('Sidebar Component', () => {
       </ThemeProvider>
     )
 
-    fireEvent.click(getByText('X'))
+    fireEvent.click(getByTestId('close'))
 
     const actions = store.getActions()
     expect(actions).toEqual([{ type: 'cart/visible', payload: false }])
@@ -58,7 +58,10 @@ describe('Sidebar Component', () => {
   test('dispatches actions when purchase is completed', () => {
     const store = mockStore({
       cart: {
-        items: []
+        items: [
+          { _id: '1', name: 'Item 1', price: 10.99, amount: 2 },
+          { _id: '2', name: 'Item 2', price: 5.99, amount: 3 }
+        ]
       }
     })
 
@@ -70,7 +73,7 @@ describe('Sidebar Component', () => {
       </ThemeProvider>
     )
 
-    fireEvent.click(getByText('Finalizar Compra'))
+    fireEvent.click(getByText('Comprar'))
 
     const actions = store.getActions()
     expect(actions).toEqual([

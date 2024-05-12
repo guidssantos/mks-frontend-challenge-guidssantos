@@ -12,6 +12,8 @@ import {
     limit: string[];
     name: string;
     page?: number;
+    startDate?: number;
+    endDate?: number;
   };
 
   type FilterProps = {

@@ -1,8 +1,8 @@
 export interface ProductProps {
   _id: string
   name: string
-  brand: string
-  description: string
+  brand?: string
+  description?: string
   photo: string
   price: number
   createdAt: string
