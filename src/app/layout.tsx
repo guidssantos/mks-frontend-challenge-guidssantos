@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "@/store";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
+import { FiltersContextProvider } from "@/contexts/FiltersContext";
 
 
 const queryClient = new QueryClient()
@@ -38,7 +39,9 @@ export default function RootLayout({
                 theme="light"
               />
               <GlobalStyles />
+              <FiltersContextProvider>
               {children}
+              </FiltersContextProvider>
             </ThemeProvider>
           </QueryClientProvider>
         </Provider>
