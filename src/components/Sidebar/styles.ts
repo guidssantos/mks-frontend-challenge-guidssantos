@@ -100,9 +100,11 @@ export const ContentContainer = styled.div`
     margin: 1.6rem 0;
     border: 1px solid #f0f0f0;
 
-    input::placeholder, input {
+    input::placeholder,
+    input, g {
       color: #4d4dff;
     }
+
   }
 `
 export const TotalContainer = styled.div`

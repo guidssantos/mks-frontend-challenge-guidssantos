@@ -54,4 +54,6 @@ export const IconContainer = styled.div`
   padding: 0 clamp(8px, 0.5vw, 0.5vw);
   cursor: pointer;
   border-radius: clamp(16px, 0.833vw, 0.833vw);
+
+
 `;

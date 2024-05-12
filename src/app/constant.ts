@@ -13,8 +13,6 @@ export const initialFiltersOptions: FiltersOptions = {
   name: "",
   sortBy: [],
   limit: [],
-  startDate: 0,
-  endDate: 0,
   page: 1
 };
 

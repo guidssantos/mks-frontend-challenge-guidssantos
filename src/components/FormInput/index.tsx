@@ -53,7 +53,7 @@ export const FormInput = ({
       {Icon && (
         <S.IconContainer
         >
-          <Icon  />
+          <Icon />
         </S.IconContainer>
       )}
     </S.FormInputContainer>

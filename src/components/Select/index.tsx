@@ -36,7 +36,6 @@ export const Select = ({
     );
   }, [options, search]);
 
-  console.log(filteredOptions, 'filteredOptions')
 
   return (
     <S.SelectWrapper>

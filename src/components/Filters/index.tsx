@@ -10,8 +10,6 @@ import {
     categories: string[];
     sortBy: string[];
     limit: string[];
-    startDate: number;
-    endDate: number;
     name: string;
     page?: number;
   };
@@ -48,7 +46,7 @@ import {
        if (isAlreadySelected) {
          return {
            ...prevFilters,
-           [optionType]: ''
+           [optionType]: undefined
          }
        } else {
          return {
@@ -69,7 +67,7 @@ import {
         };
       });
     };
-
+console.log(filters, 'FILTERS')
     const onChangeDate = (
       dateString: string,
       dateProp: "startDate" | "endDate",
