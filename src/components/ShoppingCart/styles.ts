@@ -3,17 +3,21 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.white};
-    border-radius: ${theme.border.radius.xsmall};
+    border-radius: ${theme.border.radius.large};
     display: flex;
     align-items: center;
-    gap: 1.4rem;
-    padding: ${theme.spacings.xxsmall} ${theme.spacings.small};
+    padding: ${theme.spacings.xxsmall} ;
+    position: relative;
     cursor: pointer;
     transition: all ease-in-out 300ms;
+    path {
+      fill: #4d4dff;
+
+    }
     &:hover {
       background-color: #eae4e4;
     }
-    &:active{
+    &:active {
       transform: scale(0.95);
     }
   `}
@@ -21,8 +25,14 @@ export const Container = styled.div`
 
 export const Quantity = styled.div`
   ${({ theme }) => css`
-    color: ${theme.colors.black};
+    color: #4d4dff;
     font-weight: 700;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
+    position: absolute;
+    top: -0.6rem;
+    right: -0.6rem;
+    background-color: #a6bcff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5.7rem;
   `}
 `
