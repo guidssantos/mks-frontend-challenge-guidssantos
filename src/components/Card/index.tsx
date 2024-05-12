@@ -19,6 +19,7 @@ export const Card = ({filters}: any) => {
     )
   }
 
+
   if (isLoading) {
     return (
       <S.Container>
@@ -42,20 +43,35 @@ export const Card = ({filters}: any) => {
       </S.Container>
     )
   }
+  if (data.length === 0) {
+    return (
+      <div
+        style={{
+          height: '20vh',
+          width: '67.7vw',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <div>Nenhum produto encontrado com os filtros selecionados</div>
+      </div>
+    )
+  }
 
   return (
     <S.Container>
-      
       {data.map((product: ProductProps) => (
         <motion.div
-          key={product.id}
+          key={product._id}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <IndividualCard key={product.id} product={product} />
+          <IndividualCard key={product._id} product={product} />
         </motion.div>
       ))}
+
     </S.Container>
   )
 }
