@@ -8,29 +8,32 @@ export const FormInputContainer = styled.div<StyleProps>`
   position: relative;
   display: flex;
   flex-wrap: no-wrap;
-  border-radius: clamp(8px, 0.833vw, 0.833vw);
-  border: 1px solid
-    ${({ error }) => (error ? "#ff005d" : "#ededed")};
+  border-radius: clamp(16px, 0.833vw, 0.833vw);
+  border: 1px solid ${({ error }) => (error ? '#ff005d' : '#ffffff')};
   background: transparent;
 
   input {
     all: unset;
     width: 100%;
     padding: clamp(12px, 0.833vw, 0.833vw);
-    border-radius: clamp(8px, 0.833vw, 0.833vw);
+    border-radius: clamp(16px, 0.833vw, 0.833vw);
     font-size: clamp(12px, 0.833vw, 0.833vw);
-    color: var(--light_gray);
+    color: #ffffff;
   }
-`;
+
+  input::placeholder{
+     color: #ffffff;
+  }
+`
 
 export const InputLabel = styled.label<StyleProps>`
   position: absolute;
   top: calc(-1 * 0.7 * clamp(12px, 0.833vw, 0.833vw));
   left: clamp(16px, 0.833vw, 0.833vw);
   font-size: clamp(12px, 0.73vw, 0.73vw);
-  background: "#ededed";
+  background: "#ffffff";
   padding: 0 clamp(4px, 0.21vw, 0.21vw);
-  color: ${({ error }) => (error ? "#ff005d" : "#ededed")};
+  color: ${({ error }) => (error ? "#ff005d" : "#ffffff")};
 `;
 
 export const ErrorLabel = styled.span`
@@ -50,5 +53,5 @@ export const IconContainer = styled.div`
   font-size: clamp(20px, 1.041vw, 1.041vw);
   padding: 0 clamp(8px, 0.5vw, 0.5vw);
   cursor: pointer;
-  border-radius: clamp(8px, 0.833vw, 0.833vw);
+  border-radius: clamp(16px, 0.833vw, 0.833vw);
 `;

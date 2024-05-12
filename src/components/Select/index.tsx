@@ -36,6 +36,7 @@ export const Select = ({
     );
   }, [options, search]);
 
+  console.log(filteredOptions, 'filteredOptions')
 
   return (
     <S.SelectWrapper>
@@ -44,10 +45,16 @@ export const Select = ({
       >
         <input
           placeholder={placeholder}
-          value={search}
+          value={
+            individual
+              ? filteredOptions.find(
+                  (option) => option.value === selectedOptions
+                )?.label
+              : search
+          }
           onChange={(e) => {
-            setSearch(e.target.value);
-            if (!showOptions) setShowOptions(true);
+            setSearch(e.target.value)
+            if (!showOptions) setShowOptions(true)
           }}
         />
         <S.IconContainer>
@@ -58,7 +65,7 @@ export const Select = ({
         <>
           {selectedOptions?.length > 0 && (
             <S.QuantitySelectedIndicator>
-            {selectedOptions.length} opções selecionadas
+              {selectedOptions.length} opções selecionadas
             </S.QuantitySelectedIndicator>
           )}
         </>
@@ -69,30 +76,32 @@ export const Select = ({
             {filteredOptions?.map((option) => (
               <S.Option
                 key={option.value}
-                selected={individual ? selectedOptions === option : selectedOptions.includes(option)}
+                selected={
+                  individual
+                    ? selectedOptions === option.value
+                    : selectedOptions.includes(option.value)
+                }
                 onClick={() => onSelectOption(option)}
-              >{!individual && (
-                <div></div>
-              )}
+              >
+                {!individual && <div></div>}
                 <span>{option.label}</span>
               </S.Option>
             ))}
           </S.OptionsList>
           {onRemoveAll && (
-            
             <button
-            onClick={() => {
-              setSearch("");
-              setShowOptions(false);
-              if (selectedOptions.length === 0) return;
-              onRemoveAll();
-            }}
+              onClick={() => {
+                setSearch('')
+                setShowOptions(false)
+                if (selectedOptions.length === 0) return
+                onRemoveAll()
+              }}
             >
-            Remover todos
-          </button>
+              Remover todos
+            </button>
           )}
         </S.OptionsContainer>
       )}
     </S.SelectWrapper>
-  );
+  )
 };

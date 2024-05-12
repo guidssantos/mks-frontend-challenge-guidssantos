@@ -8,10 +8,12 @@ interface FormInputProps
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  label?: string;
-  error?: string;
-  canToggleTextVisibility?: boolean;
-  register?: UseFormRegisterReturn;
+  label?: string
+  error?: string
+  canToggleTextVisibility?: boolean
+  register?: UseFormRegisterReturn
+  Icon?: any;
+  id?: string;
 }
 
 export const FormInput = ({
@@ -19,15 +21,16 @@ export const FormInput = ({
   error,
   canToggleTextVisibility,
   register,
+  Icon,
+  id,
   ...props
 }: FormInputProps) => {
-  const [showTest, setShowText] = useState<boolean>(false);
 
   return (
-    <S.FormInputContainer error={error} data-testid="form-input-container">
+    <S.FormInputContainer id={id} error={error} data-testid="form-input-container">
       {!!label && (
         <S.InputLabel
-          htmlFor={props.id}
+          htmlFor={id}
           error={error}
           data-testid="form-input-label"
         >
@@ -44,21 +47,15 @@ export const FormInput = ({
         {...props}
         {...register}
         type={
-          canToggleTextVisibility
-            ? showTest
-              ? "text"
-              : "password"
-            : props.type
+          props.type
         }
       />
-      {canToggleTextVisibility && (
+      {Icon && (
         <S.IconContainer
-          data-testid="form-input-toggle-visibility-icon"
-          onClick={() => setShowText((prevState) => !prevState)}
         >
-          {showTest ? <BsEyeSlash /> : <BsEye />}
+          <Icon  />
         </S.IconContainer>
       )}
     </S.FormInputContainer>
-  );
+  )
 };

@@ -6,10 +6,13 @@ background-color: ${theme.colors.primary};
 display: flex;
 justify-content: space-between;
 align-items: center;
-padding: 2rem 5rem;
+padding: 1.5rem 2.4rem;
 
 @media (max-width: 425px){
-  padding: 2rem 2rem;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: center;
 }
 `}
 `
@@ -41,4 +44,12 @@ export const LogoSubTitle = styled.h2`
       font-size: 1.6rem;
     }
   `}
+`
+
+export const InputWrapper = styled.div`
+width: 300px;
+
+path{
+  fill: white;
+}
 `
