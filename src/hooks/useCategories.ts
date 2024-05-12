@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const fetchCategories = async () => {
   const { data } = await axios.get(
-    'http://localhost:3000/api/categories'
+    '/api/categories'
   )
   return data
 }

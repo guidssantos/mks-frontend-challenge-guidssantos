@@ -5,7 +5,7 @@ import { ProductFilters } from '@/types/products'
 const fetchProducts = async (filters: ProductFilters) => {
   console.log(filters, 'filters')
   const { data } = await axios.get(
-    'http://localhost:3000/api/products',
+    '/api/products',
     {params: filters}
   )
   return data

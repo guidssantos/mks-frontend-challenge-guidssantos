@@ -42,14 +42,23 @@ import {
       });
     };
 
-    const onSelectIndividual = (newOption: any, optionType: SelectsOptions) => {
-      setFilters((prevFilters) => {
-        return {
-          ...prevFilters,
-          [optionType]: newOption.value,
-        };
-      });
-    };
+   const onSelectIndividual = (newOption: any, optionType: SelectsOptions) => {
+     setFilters((prevFilters) => {
+       const isAlreadySelected = prevFilters[optionType] === newOption.value
+       if (isAlreadySelected) {
+         return {
+           ...prevFilters,
+           [optionType]: ''
+         }
+       } else {
+         return {
+           ...prevFilters,
+           [optionType]: newOption.value
+         }
+       }
+     })
+   }
+
 
 
     const onRemoveAll = (optionType: SelectsOptions) => {
