@@ -1,35 +1,39 @@
 import styled, { css } from 'styled-components'
 
 export const Container = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
-background-color: white;
-padding: 2rem;
-border-radius: 0.8rem;
-position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  position: relative;
+  gap: 1.6rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0.8rem;
 `
 
 export const OnClose = styled.div`
-position: absolute;
-right: -10px;
-top: -10px;
-background-color: black;
-color: white;
-height: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 20px;
-border-radius: 1rem;
-cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0.2rem;
+  color: #4d4dff;
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+  cursor: pointer;
 `
 
 
 export const Title = styled.h1`
-  font-weight: 400;
-  font-size: 1.3rem;
-  width: 100px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0em;
+  color: #3d3d3d;
+  width: 100%;
 `
 
 export const QuantityContainer = styled.div`
@@ -51,6 +55,10 @@ export const Quantity = styled.div`
   gap: 0.6rem;
   border: 0.3px solid #bfbfbf;
   border-radius: 4px;
+
+  span{
+    cursor:  default;
+  }
 `
 
 export const QuantityControl = styled.div`
@@ -61,6 +69,22 @@ export const QuantityControl = styled.div`
 `
 
 export const Price = styled.span`
-font-size: 1.4rem;
-font-weight: 700;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0em;
+  color: #4d4dff;
+`
+export const BottomContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+`
+export const ItensContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 100%;
+gap: 1rem;
 `

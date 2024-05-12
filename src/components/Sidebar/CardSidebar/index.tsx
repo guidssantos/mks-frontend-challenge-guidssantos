@@ -5,6 +5,7 @@ import * as S from './styles'
 import { toast } from 'react-toastify'
 import { removeFromCart, updateAmount } from '@/store/modules/cart/actions'
 import { ProductProps } from '@/types/products'
+import OnClose from '../images/OnClose.svg'
 
 interface CardSidebarProps {
   item: ProductProps
@@ -20,12 +21,12 @@ export const CardSidebar = ({ item }: CardSidebarProps) => {
 
   const handleRemoveFromCart = () => {
     toast.success('Produto removido com sucesso!')
-    dispatch(removeFromCart(item.id))
+    dispatch(removeFromCart(item._id))
   }
 
   const handleUpdateAmount = (newAmount: number) => {
-    if (newAmount > 1) {
-      dispatch(updateAmount({ id: item.id, amount: newAmount }))
+    if (newAmount >= 1) {
+      dispatch(updateAmount({ _id: item._id, amount: newAmount }))
       setQuantity(newAmount)
     } else {
       setQuantity(1)
@@ -36,32 +37,45 @@ export const CardSidebar = ({ item }: CardSidebarProps) => {
 
   return (
     <S.Container>
-      <S.OnClose onClick={handleRemoveFromCart}>X</S.OnClose>
-      <Image src={item.photo} alt={item.name} width={46} height={46} />
-      <S.Title>{item.name}</S.Title>
-      <S.QuantityContainer>
-        <S.QuantityTitle>Qtd:</S.QuantityTitle>
-        <S.Quantity>
-          <S.QuantityControl
-            style={{
-              borderRight: '0.2px solid #bfbfbf'
-            }}
-            onClick={() => handleUpdateAmount(quantity - 1)}
-          >
-            -
-          </S.QuantityControl>
-          <span>{quantity}</span>
-          <S.QuantityControl
-            style={{
-              borderLeft: '0.2px solid #bfbfbf'
-            }}
-            onClick={() => handleUpdateAmount(quantity + 1)}
-          >
-            +
-          </S.QuantityControl>
-        </S.Quantity>
-      </S.QuantityContainer>
-      <S.Price>R$: {totalPrice.toFixed(2)}</S.Price>{' '}
+      <S.OnClose onClick={handleRemoveFromCart}>
+        <OnClose />
+      </S.OnClose>
+      <Image
+        src={item.photo}
+        alt={item.name}
+        width={53}
+        height={53}
+        style={{
+          objectFit: 'contain'
+        }}
+      />
+      <S.ItensContainer>
+        <S.Title>{item.name}</S.Title>
+        <S.BottomContainer>
+          <S.QuantityContainer>
+            <S.Quantity>
+              <S.QuantityControl
+                style={{
+                  borderRight: '0.2px solid #bfbfbf'
+                }}
+                onClick={() => handleUpdateAmount(quantity - 1)}
+              >
+                -
+              </S.QuantityControl>
+              <span>{quantity}</span>
+              <S.QuantityControl
+                style={{
+                  borderLeft: '0.2px solid #bfbfbf'
+                }}
+                onClick={() => handleUpdateAmount(quantity + 1)}
+              >
+                +
+              </S.QuantityControl>
+            </S.Quantity>
+          </S.QuantityContainer>
+          <S.Price>R$: {totalPrice.toFixed(2)}</S.Price>
+        </S.BottomContainer>
+      </S.ItensContainer>
     </S.Container>
   )
 }
