@@ -10,20 +10,51 @@ import { Filters } from '@/components/Filters';
 import { useEffect, useState } from 'react';
 import { dataInitialValue, initialFiltersOptions } from './constant';
 import useCategories from '@/hooks/useCategories';
+import useDebounce from '@/hooks/useDebounce';
+import { CategoryProps, FiltersProps } from '@/utils/filtersOptions';
+import { useFilters } from '@/hooks/useFilters';
+import { Hero } from '@/components/Hero';
+import { Copyright } from '@/components/Copyright';
 export default function Home() {
-  const visible = useSelector((state: any) => state.cart.visible)
+  const { data: categories, isLoading } = useCategories()
+  const { filters, setFilters, data, setData } = useFilters()
 
-    const [filters, setFilters] = useState(initialFiltersOptions)
-    const [data, setData] = useState(dataInitialValue)
+
+    useEffect(() => {
+      if (!isLoading) {
+        const categoryOptions = categories?.map(
+          (category: CategoryProps): FiltersProps => ({
+            value: category._id,
+            label: category.name
+          })
+        )
+        setData({
+          ...data,
+          categoryOptions
+        })
+      }
+    }, [categories])
+
 
   return (
     <S.Container>
-      <Navbar/>
-      <Sidebar visible={visible}/>
-      <Filters options={data} filters={filters} setFilters={setFilters}  />
+      <Navbar />
+      <S.ContentContainer>
+        <Hero />
+        <Filters options={data} filters={filters} setFilters={setFilters} />
 
-      <Card filters={filters}/>
-      <Footer/>
+        <Card
+          filters={{
+            ...filters,
+            name: useDebounce(filters.name, 500),
+            categories: Array.isArray(filters.categories)
+              ? filters.categories.join(',')
+              : undefined
+          }}
+        />
+      </S.ContentContainer>
+        <Footer/>
+      <Copyright />
     </S.Container>
-  );
+  )
 }

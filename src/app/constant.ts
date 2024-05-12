@@ -10,6 +10,7 @@ export const dataInitialValue = {
 
 export const initialFiltersOptions: FiltersOptions = {
   categories: [],
+  name: "",
   sortBy: [],
   limit: [],
   startDate: 0,

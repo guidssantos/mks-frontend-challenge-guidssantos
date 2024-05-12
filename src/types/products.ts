@@ -1,5 +1,5 @@
-export interface ProductProps{
-  id: number
+export interface ProductProps {
+  _id: string
   name: string
   brand: string
   description: string

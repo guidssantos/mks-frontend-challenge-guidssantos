@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 
 export interface AddCartPayload {
-  id: number
+  _id: string
   name: string
   brand: string
   description: string
@@ -12,7 +12,7 @@ export interface AddCartPayload {
 }
 
 export interface UpdateAmountPayload {
-  id: number
+  _id: string
   amount: number
 }
 
@@ -20,8 +20,10 @@ export interface UpdateAmountPayload {
 
 
 export const addToCart = createAction <AddCartPayload>('cart/add_product')
-export const removeFromCart = createAction <number>('cart/remove_product')
+export const favorite = createAction <any>('cart/favorite')
+export const removeFromCart = createAction <string>('cart/remove_product')
 export const updateAmount =
   createAction<UpdateAmountPayload>('cart/update_amount')
 export const visibleCard = createAction <boolean>('cart/visible')
 export const clearCart = createAction('cart/clearCart')
+export const coupon = createAction<string>('cart/coupon')
