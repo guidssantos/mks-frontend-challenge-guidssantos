@@ -1,3 +1,12 @@
+export interface FiltersProps {
+  value: string,
+  label: string
+}
+export interface CategoryProps {
+  _id: string,
+  name: string
+}
+
 export const orderByOptions = [
     {
         value: 'name',

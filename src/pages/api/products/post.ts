@@ -14,27 +14,35 @@ export default async function handlePost(req: NextApiRequest, res: NextApiRespon
                 category
             } = req.body;
 
-            try{
-                const db = await connectToDatabase();
-                const collection = db.collection('products');
-                const categoriesCollection = db.collection('categories')
+            let client
+              const { client: mongoClient, db } = await connectToDatabase()
+              client = mongoClient
+            try {
+              const collection = db.collection('products')
+              const categoriesCollection = db.collection('categories')
 
-                const findCategory = await categoriesCollection.findOne({_id: new ObjectId(category.id)})
-                const data = {
-                    name,
-                    photo,
-                    price,
-                    description,
-                    category:{
-                        ...findCategory
-                    },
-                    createdAt: currentDateTime(),
-                    updatedAt: currentDateTime(),
-                }
+              const findCategory = await categoriesCollection.findOne({
+                _id: new ObjectId(category.id)
+              })
+              const data = {
+                name,
+                photo,
+                price,
+                description,
+                category: {
+                  ...findCategory
+                },
+                createdAt: currentDateTime(),
+                updatedAt: currentDateTime()
+              }
 
-                const result = await collection.insertOne(data);
-                res.status(200).json(data);
-            } catch{
-                res.status(500).json({message: 'Erro ao enviar dados.'})
+              const result = await collection.insertOne(data)
+              res.status(200).json(data)
+            } catch {
+              res.status(500).json({ message: 'Erro ao enviar dados.' })
+            } finally {
+              if (client) {
+                await client.close()
+              }
             }
 }

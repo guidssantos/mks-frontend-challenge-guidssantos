@@ -1,23 +1,30 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db } from 'mongodb'
 
-let db: Db | null = null;
+interface DatabaseConnection {
+  client: MongoClient
+  db: Db
+}
 
-export async function connectToDatabase(): Promise<Db> {
-    if (db) {
-        return db;
+let dbConnection: DatabaseConnection | null = null
+
+export async function connectToDatabase(): Promise<DatabaseConnection> {
+  if (dbConnection) {
+    return dbConnection
+  }
+
+  const uri = process.env.MONGODB_URI || ''
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: '1',
+      strict: true,
+      deprecationErrors: true
     }
+  })
 
-    const uri = process.env.MONGODB_URI || '';
-    const client = new MongoClient(uri, {
-        serverApi:{
-            version: '1',
-            strict: true,
-            deprecationErrors: true
-        }
-    });
+  await client.connect()
+  const db = client.db('ecommerce')
 
-    await client.connect();
-    db = client.db('ecommerce');
+  dbConnection = { client, db }
 
-    return db;
+  return dbConnection
 }

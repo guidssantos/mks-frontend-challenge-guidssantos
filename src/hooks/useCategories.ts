@@ -9,7 +9,7 @@ const fetchCategories = async () => {
 }
 
 const useCategories = () => {
-  return useQuery(['categories'], () => fetchCategories(), {
+  return useQuery('categories', () => fetchCategories(), {
     staleTime: 60000
   })
 }
